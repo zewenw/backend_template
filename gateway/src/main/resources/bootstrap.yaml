@@ -1,0 +1,10 @@
+#当使用nacos作为配置中心是 需要放开 并把配置迁移到nacos对应的命名空间下
+#spring:
+#  application:
+#    name: gateway
+#  cloud:
+#    nacos:
+#      config:
+#        server-addr: @server-addr@
+#        file-extension: yaml
+#        namespace: @namespace@

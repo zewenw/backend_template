@@ -1,0 +1,13 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+swagger:
+  enable: true
+oss:
+  accessKey: AKIAWBZXEY3A33FJLPV4
+  secretKey: 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
+  bucketName: s3-gatlin-test-bj
+  type: aws
+  regionName: cn-north-1

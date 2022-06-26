@@ -1,0 +1,23 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: oauth-server
+  profiles:
+    active: @environment@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: @server-addr@
+        service: oauth-server
+        group: dev
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+# 关闭mybatis-plus日志输出logo
+mybatis-plus:
+  global-config:
+    banner: false
+  mapper-locations: classpath:/mappers/oauth/*Mapper.xml

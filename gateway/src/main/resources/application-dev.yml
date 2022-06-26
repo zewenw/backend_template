@@ -1,0 +1,29 @@
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 15000
+    lettuce:
+      pool:
+        max-active: 600
+        max-idle: 300
+        max-wait: 15000
+        min-idle: 10
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/oauth/oauth/getPublicKey
+logging:
+  # 日志级别
+  level:
+    root: info
+
+#----------------------------------------business configuration---------------------------------------------
+security:
+  ignoreUrls:
+    - /**/v2/api-docs
+    - /**/swagger-ui.html
+    - /swagger-resources/**
+    - /demo/**
+    - /oauth/**

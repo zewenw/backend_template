@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.backend.oauth.dao.mapper.SysUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.backend.oauth.dao.entity.SysUser">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="username" property="username" />
+        <result column="nickname" property="nickname" />
+        <result column="gender" property="gender" />
+        <result column="password" property="password" />
+        <result column="avatar" property="avatar" />
+        <result column="mobile" property="mobile" />
+        <result column="status" property="status" />
+        <result column="email" property="email" />
+        <result column="locked" property="locked" />
+        <result column="expired_time" property="expiredTime" />
+        <result column="enabled" property="enabled" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, username, nickname, gender, password, avatar, mobile, status, email, locked, expired_time, enabled, create_time, update_time
+    </sql>
+    <select id="findUserByUsername" resultMap="BaseResultMap">
+        select
+            *
+        from
+            sys_user
+        where
+            username = #{username};
+    </select>
+
+</mapper>
