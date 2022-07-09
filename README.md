@@ -27,6 +27,7 @@
 - 接口限流
 - swagger文档 访问地址：http://127.0.0.1/doc.html#/home
 ### 项目使用简介
-如需新增模块,可以参考service-one/service-two
-
+如需新增模块,可以参考service-one/service-two  
+如采用，希望能为项目点亮一个star
+#### 欢迎有相同兴趣的开发者贡献代码
 #### [个人博客](https://www.yuque.com/wangzewen-jlbvo/ehmcng)
