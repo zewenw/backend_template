@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.backend</groupId>
-            <artifactId>service-one-service</artifactId>
+            <artifactId>service-two-service</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
