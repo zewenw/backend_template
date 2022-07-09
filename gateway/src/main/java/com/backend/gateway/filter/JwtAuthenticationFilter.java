@@ -39,7 +39,6 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
     @SneakyThrows
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info("[JwtAuthenticationFilter]===========================");
         //获取请求头中的加密的用户信息
         String token = exchange.getRequest().getHeaders().getFirst(JwtTokenConstant.TOKEN_NAME);
         // 非JWT放行不做后续解析处理

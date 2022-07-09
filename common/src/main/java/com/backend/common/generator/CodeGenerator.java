@@ -21,16 +21,31 @@ import java.util.*;
  */
 public class CodeGenerator {
 
+    /**
+     * 入口
+     */
+    public static void main(String[] args) {
+        geenerate(args);
+    }
+
     //datasource information
-    private static final String DATASOURCE_URL = "jdbc:mysql://localhost:3306/oauth?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8";
+    private static final String DATASOURCE_URL = "jdbc:mysql://localhost:3306/service_one?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8";
     private static final String DATASOURCE_DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String DATASOURCE_USERNAME = "root";
     private static final String DATASOURCE_PASSWORD = "123";
+    //对应模块代码生成开关
+    private static final boolean CONTROLLER_FLAG = false;
+    private static final boolean SERVICE_FLAG = false;
+    private static final boolean SERVICE_IMPL_FLAG = false;
+    private static final boolean ENTITY_FLAG = true;
+    private static final boolean MAPPER_FLAG = true;
+    private static final boolean MAPPER_XML_FLAG = true;
+    private static final boolean VO_FLAG = false;
 
     //文件存放前缀
-    private static final String URL_PREFIX = "/oauth/oauth-server";
+    private static final String URL_PREFIX = "/service-one/service-one-dao";
     //模块名称
-    private static final String MODULE_NAME = "oauth";
+    private static final String MODULE_NAME = "service";
     //组名
     private static final String GROUP_NAME = "backend";
 
@@ -42,8 +57,6 @@ public class CodeGenerator {
     private static final String MAPPER_PATH = URL_PREFIX + "/src/main/java/com/" + GROUP_NAME + "/" + MODULE_NAME + "/dao/mapper/";
     private static final String MAPPER_XML_PATH = URL_PREFIX + "/src/main/resources/mappers/" + MODULE_NAME + "/";
     private static final String VO_PATH = URL_PREFIX + "/src/main/java/com/" + GROUP_NAME + "/" + MODULE_NAME + "/dao/";
-
-
     /**
      * 读取控制台内容
      */
@@ -60,11 +73,10 @@ public class CodeGenerator {
         }
         throw new MybatisPlusException("请输入正确的" + tip + "！");
     }
-
     /**
      * RUN THIS TO GENERATE CODE
      */
-    public static void main(String[] args) {
+    public static void geenerate(String[] args) {
         String projectPath = System.getProperty("user.dir");
         // 代码生成器
         CustomGenerator autoGenerator = new CustomGenerator();
@@ -113,68 +125,82 @@ public class CodeGenerator {
 
         List<FileOutConfig> focList = new ArrayList<>();
         //Controller file path
-        focList.add(new FileOutConfig("/templates/generate/controller.java.ftl") {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                // 自定义输入文件名称
-                String filePath = projectPath + CONTROLLER_PATH + tableInfo.getEntityName() + "Controller" + StringPool.DOT_JAVA;
-                return filePath;
-            }
-        });
+        if(CONTROLLER_FLAG){
+            focList.add(new FileOutConfig("/templates/generate/controller.java.ftl") {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输入文件名称
+                    String filePath = projectPath + CONTROLLER_PATH + tableInfo.getEntityName() + "Controller" + StringPool.DOT_JAVA;
+                    return filePath;
+                }
+            });
+        }
         //entity file path
-        focList.add(new FileOutConfig("/templates/generate/entity.java.ftl") {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                // 自定义输入文件名称
-                String filePath = projectPath + ENTITY_PATH + tableInfo.getEntityName() + StringPool.DOT_JAVA;
-                return filePath;
-            }
-        });
+        if(ENTITY_FLAG){
+            focList.add(new FileOutConfig("/templates/generate/entity.java.ftl") {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输入文件名称
+                    String filePath = projectPath + ENTITY_PATH + tableInfo.getEntityName() + StringPool.DOT_JAVA;
+                    return filePath;
+                }
+            });
+        }
         //vo file path
-        focList.add(new FileOutConfig("/templates/generate/vo.java.ftl") {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                // 自定义输入文件名称
-                String filePath = projectPath + VO_PATH + tableInfo.getEntityName() + "Dto" + StringPool.DOT_JAVA;
-                return filePath;
-            }
-        });
+        if(VO_FLAG){
+            focList.add(new FileOutConfig("/templates/generate/vo.java.ftl") {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输入文件名称
+                    String filePath = projectPath + VO_PATH + tableInfo.getEntityName() + "Dto" + StringPool.DOT_JAVA;
+                    return filePath;
+                }
+            });
+        }
         //Mapper.java file path
-        focList.add(new FileOutConfig("/templates/generate/mapper.java.ftl") {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                // 自定义输入文件名称
-                String filePath = projectPath + MAPPER_PATH + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_JAVA;
-                return filePath;
-            }
-        });
+        if(MAPPER_FLAG){
+            focList.add(new FileOutConfig("/templates/generate/mapper.java.ftl") {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输入文件名称
+                    String filePath = projectPath + MAPPER_PATH + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_JAVA;
+                    return filePath;
+                }
+            });
+        }
         //Mapper.xml file path
-        focList.add(new FileOutConfig("/templates/generate/mapper.xml.ftl") {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                // 自定义输入文件名称
-                String filePath = projectPath + MAPPER_XML_PATH + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
-                return filePath;
-            }
-        });
+        if(MAPPER_XML_FLAG){
+            focList.add(new FileOutConfig("/templates/generate/mapper.xml.ftl") {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输入文件名称
+                    String filePath = projectPath + MAPPER_XML_PATH + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+                    return filePath;
+                }
+            });
+        }
         //Service file path
-        focList.add(new FileOutConfig("/templates/generate/service.java.ftl") {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                // 自定义输入文件名称
-                String filePath = projectPath + SERVICE_PATH + tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
-                return filePath;
-            }
-        });
+        if(SERVICE_FLAG){
+            focList.add(new FileOutConfig("/templates/generate/service.java.ftl") {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输入文件名称
+                    String filePath = projectPath + SERVICE_PATH + tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
+                    return filePath;
+                }
+            });
+        }
         //serviceImpl file path
-        focList.add(new FileOutConfig("/templates/generate/serviceImpl.java.ftl") {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                // 自定义输入文件名称
-                String filePath = projectPath + SERVICE_IMPL_PATH + tableInfo.getEntityName() + "ServiceImpl" + StringPool.DOT_JAVA;
-                return filePath;
-            }
-        });
+        if(SERVICE_IMPL_FLAG){
+            focList.add(new FileOutConfig("/templates/generate/serviceImpl.java.ftl") {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输入文件名称
+                    String filePath = projectPath + SERVICE_IMPL_PATH + tableInfo.getEntityName() + "ServiceImpl" + StringPool.DOT_JAVA;
+                    return filePath;
+                }
+            });
+        }
         injectionConfig.setFileOutConfigList(focList);
         autoGenerator.setCfg(injectionConfig);
 

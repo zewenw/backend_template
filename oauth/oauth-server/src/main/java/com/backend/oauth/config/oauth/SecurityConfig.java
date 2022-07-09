@@ -29,6 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //swagger静态资源放行
+        http.authorizeRequests()
+                .antMatchers("/swagger/**", "/**/swagger-ui.html",
+                        "/webjars/**", "/**/v2/**", "/v2/api-docs-ext/**", "/v2/**",
+                        "/swagger-resources/**", "/doc.html","/favicon.ico")
+                .permitAll();
         http
                 .exceptionHandling().accessDeniedHandler(requestAccessDeniedHandler)
                 .and()

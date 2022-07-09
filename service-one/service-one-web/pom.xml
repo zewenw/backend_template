@@ -25,18 +25,17 @@
         </dependency>
         <dependency>
             <groupId>com.backend</groupId>
+            <artifactId>service-one-domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backend</groupId>
             <artifactId>service-one-service</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <!--自定义S3 starter-->
-        <dependency>
-            <groupId>com.reyun</groupId>
-            <artifactId>spring-boot-starter-oss</artifactId>
-            <version>0.1.0</version>
         </dependency>
     </dependencies>
 

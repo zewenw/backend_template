@@ -25,6 +25,11 @@
         </dependency>
         <dependency>
             <groupId>com.backend</groupId>
+            <artifactId>service-two-domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.backend</groupId>
             <artifactId>service-two-service</artifactId>
             <version>${project.version}</version>
         </dependency>

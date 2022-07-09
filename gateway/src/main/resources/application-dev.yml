@@ -13,7 +13,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://localhost:8080/oauth/oauth/getPublicKey
+          jwk-set-uri: http://localhost/oauth/oauth/getPublicKey
 logging:
   # 日志级别
   level:
@@ -22,8 +22,5 @@ logging:
 #----------------------------------------business configuration---------------------------------------------
 security:
   ignoreUrls:
-    - /**/v2/api-docs
-    - /**/swagger-ui.html
-    - /swagger-resources/**
     - /demo/**
     - /oauth/**

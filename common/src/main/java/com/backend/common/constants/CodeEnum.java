@@ -7,7 +7,7 @@ package com.backend.common.constants;
 public enum CodeEnum {
 
     SUCCESS("10000", "操作成功", true),
-    ERROR("20000", "操作失败", false),
+    ERROR("20000", "业务系统异常，请联相应人员获取帮助", false),
 
     /**
      * oauth enum

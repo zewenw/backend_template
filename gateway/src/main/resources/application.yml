@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 80
 management:
   endpoint:
     gateway:
@@ -29,13 +29,13 @@ spring:
           uri: lb://service-one
           predicates:
             - Path=/api-service-one/**
-            - name: RequestRateLimiter
-                  args:
-                    redis-rate-limiter.replenishRate: 1   # 令牌桶每秒填充速率
-                    redis-rate-limiter.burstCapacity: 2   # 令牌桶总容量
-                    key-resolver: "#{@pathKeyResolver}"   # 使用 SpEL 表达式按名称引用 bean
           filters:
             - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1   # 令牌桶每秒填充速率
+                redis-rate-limiter.burstCapacity: 2   # 令牌桶总容量
+                key-resolver: '#{@remoteAddrKeyResolver}'   # 使用 SpEL 表达式按名称引用 bean
         - id: service-two
           uri: lb://service-two
           predicates:

@@ -1,41 +1,46 @@
 package com.backend.service.controller;
 
-import com.reyun.client.OssClient;
-import com.reyun.exception.OssClientException;
+import cn.hutool.json.JSONUtil;
+import com.backend.common.dto.ResultDTO;
+import com.backend.common.template.BizCallBack;
+import com.backend.common.template.BizTemplate;
+import com.backend.oauth.common.model.LoginUser;
+import com.backend.oauth.common.utils.LoginUserUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.FileNotFoundException;
-
 @Slf4j
+@Api(tags = "service-one demo演示模块")
 @RestController
 @RequestMapping("/demo")
-@Api(tags = "巨量千川对接模块")
 public class DemoController {
 
-    @Autowired
-    private OssClient ossClient;
-
-    @ApiOperation(value = "判断用户是否可以继续授权千川店铺账号")
+    @ApiOperation(value = "hello world")
     @GetMapping("/hello")
-    public String hello() {
+    public ResultDTO<String> hello() {
         log.info("[service-one]DemoController hello");
-        String filePath = "C:\\bug\\target.zip";
-        try {
-            ossClient.upload(filePath, "/test/task.zip");
-        } catch (OssClientException e) {
-            e.printStackTrace();
-        }
-//        int i = 1/0;
-//        testOss();
-        return "service one-hello world！";
-    }
+        return BizTemplate.execute(new BizCallBack<String>() {
+            @Override
+            public void paramCheck() {
 
+            }
+
+            @Override
+            public String preCheck() {
+                return null;
+            }
+
+            @Override
+            public String execute() {
+//                int i = 1 / 0;
+                return JSONUtil.toJsonStr(LoginUserUtils.getCurrentUser());
+            }
+        });
+    }
 
 
 }

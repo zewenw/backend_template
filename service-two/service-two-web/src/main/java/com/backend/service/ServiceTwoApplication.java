@@ -1,16 +1,25 @@
 package com.backend.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @Slf4j
+@EnableDubbo
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ServiceTwoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServiceTwoApplication.class, args);
+        try {
+            log.info("[service-two]=====================开始启动============================");
+            SpringApplication.run(ServiceTwoApplication.class);
+            log.info("[service-two]=====================启动完毕============================");
+        } catch (Exception e) {
+            log.info("[service-two]=====================启动失败============================");
+            log.info("[service-two]启动error:", e);
+        }
     }
 }

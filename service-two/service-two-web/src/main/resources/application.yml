@@ -9,5 +9,5 @@ spring:
     nacos:
       discovery:
         server-addr: @server-addr@
-        service: service-gateway
+        service: service-two
         group: dev

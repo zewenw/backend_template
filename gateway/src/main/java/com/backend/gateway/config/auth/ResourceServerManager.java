@@ -8,6 +8,7 @@ import com.backend.oauth.common.model.JwtTokenConstant;
 import com.nimbusds.jose.JWSObject;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -40,6 +41,7 @@ public class ResourceServerManager implements ReactiveAuthorizationManager<Autho
         //认证通过且角色匹配的用户可访问当前路径
         ServerHttpRequest request = authorizationContext.getExchange().getRequest();
         String token = request.getHeaders().getFirst(JwtTokenConstant.TOKEN_NAME);
+        token = StrUtil.replaceIgnoreCase(token, JwtTokenConstant.TOKEN_PREFIX, Strings.EMPTY);
         if (CharSequenceUtil.isNotBlank(token)) {
             //校验黑名单
             String payload = StrUtil.toString(JWSObject.parse(token).getPayload());

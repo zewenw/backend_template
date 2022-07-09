@@ -39,4 +39,4 @@ build/
 *.iml
 out
 gen
-*flattened-pom.xml
+*.flattened-pom.xml

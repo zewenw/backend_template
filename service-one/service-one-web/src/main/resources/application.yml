@@ -11,3 +11,5 @@ spring:
         server-addr: @server-addr@
         service: service-one
         group: dev
+mybatis-plus:
+  mapper-locations: classpath:/mappers/*Mapper.xml

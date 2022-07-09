@@ -14,7 +14,6 @@
         <module>gateway</module>
         <module>oauth</module>
         <module>schedule</module>
-        <module>admin</module>
         <module>common</module>
         <module>service-one</module>
         <module>service-two</module>
@@ -35,6 +34,8 @@
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
         <alibaba.version>2.2.1.RELEASE</alibaba.version>
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
+        <dubbo.version>3.0.1</dubbo.version>
+        <curator.version>4.2.0</curator.version>
 
         <!--root properties-->
         <revision>0.0.1-SNAPSHOT</revision>
@@ -75,6 +76,39 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--dubbo-->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${curator.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-x-discovery</artifactId>
+                <version>5.1.0</version>
+            </dependency>
+            <!--swagger-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
@@ -108,6 +142,7 @@
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>3.0.3</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -19,6 +20,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
+import org.springframework.security.oauth2.server.resource.web.server.ServerBearerTokenAuthenticationConverter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.ServerAuthenticationEntryPoint;
 import org.springframework.security.web.server.authentication.AuthenticationWebFilter;
@@ -42,11 +44,6 @@ public class ResourceServerConfig {
      */
     @Autowired
     private ResourceServerManager resourceServerManager;
-    /**
-     * 验证
-     */
-    @Autowired
-    private JwtAuthenticateManager jwtAuthenticateManager;
 
     /**
      * 不需要拦截校验权限的路径
@@ -55,29 +52,30 @@ public class ResourceServerConfig {
     private List<String> ignoreUrls;
 
     @Bean
-    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-        //认证过滤器，放入认证管理器tokenAuthenticationManager
-        AuthenticationWebFilter authenticationWebFilter = new AuthenticationWebFilter(jwtAuthenticateManager);
-        http
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) { http
                 .oauth2ResourceServer()
                 .jwt()
                 .jwtAuthenticationConverter(jwtAuthenticationConverter());
         http.oauth2ResourceServer().authenticationEntryPoint(authenticationEntryPoint());
+        //swagger静态资源放行
+        http.authorizeExchange()
+                .pathMatchers("/swagger/**", "/**/swagger-ui.html",
+                        "/webjars/**", "/**/v2/**", "/v2/api-docs-ext/**", "/v2/**",
+                        "/swagger-resources/**", "/doc.html", "/favicon.ico")
+                .permitAll();
         http
                 .httpBasic().disable()
-                .authorizeExchange()
                 //放行白名单
+                .authorizeExchange()
                 .pathMatchers(Convert.toStrArray(ignoreUrls)).permitAll()
+                //访问权限校验
                 .anyExchange().access(resourceServerManager)
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler()) // 处理未授权
                 .authenticationEntryPoint(authenticationEntryPoint()) //处理未认证
-                //跨域禁用
-                .and().csrf().disable()
-                //token验证
-                .addFilterAt(authenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION);;
-
+                //允许跨域调用
+                .and().csrf().disable();
         return http.build();
     }
 
