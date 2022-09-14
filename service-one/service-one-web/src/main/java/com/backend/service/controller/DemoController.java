@@ -1,14 +1,15 @@
 package com.backend.service.controller;
 
-import cn.hutool.json.JSONUtil;
 import com.backend.common.dto.ResultDTO;
 import com.backend.common.template.BizCallBack;
 import com.backend.common.template.BizTemplate;
-import com.backend.oauth.common.model.LoginUser;
-import com.backend.oauth.common.utils.LoginUserUtils;
+import com.backend.service.gRpc.lib.GreeterGrpc;
+import com.backend.service.gRpc.lib.HelloReply;
+import com.backend.service.gRpc.lib.HelloRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,25 +20,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/demo")
 public class DemoController {
 
+    @GrpcClient(value = "grpc-server")
+    private GreeterGrpc.GreeterBlockingStub stub;
+
     @ApiOperation(value = "hello world")
     @GetMapping("/hello")
-    public ResultDTO<String> hello() {
+    public ResultDTO<Object> hello() {
         log.info("[service-one]DemoController hello");
-        return BizTemplate.execute(new BizCallBack<String>() {
+        return BizTemplate.execute(new BizCallBack<Object>() {
             @Override
             public void paramCheck() {
 
             }
 
             @Override
-            public String preCheck() {
+            public Object preCheck() {
                 return null;
             }
 
             @Override
-            public String execute() {
+            public Object execute() {
 //                int i = 1 / 0;
-                return JSONUtil.toJsonStr(LoginUserUtils.getCurrentUser());
+//                return JSONUtil.toJsonStr(LoginUserUtils.getCurrentUser());
+                HelloRequest request = HelloRequest.newBuilder().setName("lisi").build();
+                HelloReply response = stub.sayHello(request);
+                return response.getMessage();
             }
         });
     }

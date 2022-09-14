@@ -18,16 +18,23 @@ spring:
       connection-test-query: SELECT 1
 swagger:
   enable: true
-dubbo:
-  application:
-    name: ${spring.application.name}
-  protocol:
-    port: 20881
-    name: dubbo
-  registry:
-    address: zookeeper://127.0.0.1:2181
-  provider:
-    version: 1.0
-    timeout: 8000
-    protocol: dubbo
-    threadname: dubbo
+#dubbo:
+#  application:
+#    name: ${spring.application.name}
+#  protocol:
+#    port: 20881
+#    name: dubbo
+#  registry:
+#    address: zookeeper://127.0.0.1:2181
+#  provider:
+#    version: 1.0
+#    timeout: 8000
+#    protocol: dubbo
+#    threadname: dubbo
+grpc:
+  client:
+    grpc-server:
+      address: 'static://127.0.0.1:50051'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext

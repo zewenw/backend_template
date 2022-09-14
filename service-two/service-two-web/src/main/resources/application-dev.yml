@@ -5,15 +5,18 @@ management:
         include: "*"
 swagger:
   enable: true
-dubbo:
-  application:
-    name: ${spring.application.name}
-  protocol:
-    port: -1
-    name: dubbo
-  registry:
-    address: zookeeper://127.0.0.1:2181
-  consumer:
-    version: 1.0
-    check: false
-    timeout: 8000
+#dubbo:
+#  application:
+#    name: ${spring.application.name}
+#  protocol:
+#    port: -1
+#    name: dubbo
+#  registry:
+#    address: zookeeper://127.0.0.1:2181
+#  consumer:
+#    version: 1.0
+#    check: false
+#    timeout: 8000
+grpc:
+  server:
+    port: 50051
