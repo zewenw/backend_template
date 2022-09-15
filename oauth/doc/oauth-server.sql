@@ -42,10 +42,13 @@ CREATE TABLE `oauth_client_details`
 -- ----------------------------
 -- Records of oauth_client_details
 -- ----------------------------
-INSERT INTO `oauth_client_details`
-VALUES ('myjszl', 'res1', '$2a$10$HWuOIx8C.YvlhLwp2j5LYe/r8B04xtcFmuu6t1XEBrnr2JLGFcc0q', 'all',
+INSERT INTO oauth.oauth_client_details
+(client_id, resource_ids, client_secret, `scope`, authorized_grant_types, web_server_redirect_uri, authorities,
+ access_token_validity, refresh_token_validity, additional_information, autoapprove)
+VALUES ('oauth', 'res1', '$2a$10$oQ5YFPliRn6VtBc.g.5Eyev4R/S.w4sNEJtF4rYlE3auaW/90/dju', 'all',
         'authorization_code,client_credentials,implicit,refresh_token,password', 'http://www.baidu.com', NULL, NULL,
         NULL, NULL, 'false');
+
 
 -- ----------------------------
 -- Table structure for sys_permission
@@ -147,23 +150,24 @@ CREATE TABLE `sys_user`
 INSERT INTO oauth.sys_user
 (id, user_id, username, nickname, gender, password, avatar, mobile, status, email, locked, expired_time, enabled,
  create_time, update_time)
-VALUES (1, '1', 'root', 'root', 1, '123', '', '123321', 1, '13@163.com', 1, '2019-10-10 13:41:22', 1,
-        '2019-10-10 13:41:22', '2019-10-10 13:41:22');
+VALUES (1, '1', 'root', 'root', 1, '$2a$10$oQ5YFPliRn6VtBc.g.5Eyev4R/S.w4sNEJtF4rYlE3auaW/90/dju', '', '123321', 1,
+        '13@163.com', 1, '2019-10-10 13:41:22', 1, '2019-10-10 13:41:22', '2019-10-10 13:41:22');
 INSERT INTO oauth.sys_user
 (id, user_id, username, nickname, gender, password, avatar, mobile, status, email, locked, expired_time, enabled,
  create_time, update_time)
-VALUES (2, '2', 'admin', 'admin', 1, '123', '', '123321', 1, '14@163.com', 1, '2019-10-10 13:41:22', 1,
-        '2019-10-10 13:41:22', '2019-10-10 13:41:22');
+VALUES (2, '2', 'admin', 'admin', 1, '$2a$10$oQ5YFPliRn6VtBc.g.5Eyev4R/S.w4sNEJtF4rYlE3auaW/90/dju', '', '123321', 1,
+        '14@163.com', 1, '2019-10-10 13:41:22', 1, '2019-10-10 13:41:22', '2019-10-10 13:41:22');
 INSERT INTO oauth.sys_user
 (id, user_id, username, nickname, gender, password, avatar, mobile, status, email, locked, expired_time, enabled,
  create_time, update_time)
-VALUES (3, '3', 'admin1', 'admin1', 1, '123', '', '123321', 1, '15@163.com', 1, '2019-10-10 13:41:22', 1,
-        '2019-10-10 13:41:22', '2019-10-10 13:41:22');
+VALUES (3, '3', 'admin1', 'admin1', 1, '$2a$10$oQ5YFPliRn6VtBc.g.5Eyev4R/S.w4sNEJtF4rYlE3auaW/90/dju', '', '123321', 1,
+        '15@163.com', 1, '2019-10-10 13:41:22', 1, '2019-10-10 13:41:22', '2019-10-10 13:41:22');
 INSERT INTO oauth.sys_user
 (id, user_id, username, nickname, gender, password, avatar, mobile, status, email, locked, expired_time, enabled,
  create_time, update_time)
-VALUES (4, '4', 'admin2', 'admin2', 1, '123', '', '123321', 1, '16.@163.com', 1, '2019-10-10 13:41:22', 1,
-        '2019-10-10 13:41:22', '2019-10-10 13:41:22');
+VALUES (4, '4', 'admin2', 'admin2', 1, '$2a$10$oQ5YFPliRn6VtBc.g.5Eyev4R/S.w4sNEJtF4rYlE3auaW/90/dju', '', '123321', 1,
+        '16.@163.com', 1, '2019-10-10 13:41:22', 1, '2019-10-10 13:41:22', '2019-10-10 13:41:22');
+
 
 
 -- ----------------------------

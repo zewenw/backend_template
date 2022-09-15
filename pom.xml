@@ -17,6 +17,7 @@
         <module>common</module>
         <module>service-one</module>
         <module>service-two</module>
+        <module>zipkin-server</module>
     </modules>
 
     <properties>
@@ -157,6 +158,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--sleuth用于收集服务调用数据-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
         <!--测试框架-->
         <dependency>

@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "08cd189e-1844-4611-bc89-e5aa7891a2ed",
+		"name": "service-two",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "hello",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsiYWxsIl0sIlVTRVJfSUQiOiJhYmNkY2RjZCIsIlVTRVJfTkFNRSI6InVzZXIiLCJleHAiOjE2NTY1OTg5NTIsImF1dGhvcml0aWVzIjpbIlJPTEVfR1VFU1QiXSwianRpIjoiZTA3YWQ4YmYtZGE3YS00MjJiLThiMTAtNGEzYWQ0NDFhNzYxIiwiY2xpZW50X2lkIjoib2F1dGgifQ.B0zHaxlvz_LcSJYj9WYVt60cVCMvERUi_X0bYMAaXzorSORKCOGXI-f7IJyR09lQvmdeK6Ipj21R2DVYUvj605xHHPH3wb8D8KbUTfJ7E-DBN5rAYqvWK1KTxj82_dbYSsXuFkgBFBSC3CiEyjmp7U8P6qU6wfDJm0-hWTVuWKwbL2Q2QkoJSqb18QmBziLNDsAb9aSlz1UNCmFDn3L32sIo3W6fx-51ZlGvRm0uZIAU5IHuSPHKY6X0WC3PTTUexi5Lz5Ql9Lswbd9vQLsCLYQ-ZEJRIV4QlgfvrVg4GTPHMidns39Rvhz9VRlky9lfx2F68Dtc7Be_FU296zHAmg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/api-service-two/demo/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api-service-two",
+						"demo",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dubboDemo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsiYWxsIl0sIlVTRVJfSUQiOiJhYmNkY2RjZCIsIlVTRVJfTkFNRSI6InVzZXIiLCJleHAiOjE2NTY5NDY1NTYsImF1dGhvcml0aWVzIjpbIlJPTEVfR1VFU1QiXSwianRpIjoiYjc0M2NiZmUtNDk0OS00NjBhLWE4MzktMDc0ZWZkNmYxMTZhIiwiY2xpZW50X2lkIjoib2F1dGgifQ.Q-0XXDOenNmw9TTAz_7cieIIupHXYgouqZpCZopcju-MK0CU_itsc8j_2MgXelwqRo2oz2Zgcb9eej_8R_SlEPcpD8Nwer2K3Ip5FhdPk9uYZucTeXoLtQFMZksyT7T95f1TwUSCT5ppzP7VDBHg8NullMBHhOR2YansP_6Tc30bP3BQ3cXdCxAjkJXZGGftnqC7Sw2cs8XKeX98VNAQFt0DY0kPJfah_G7-kgXtBYHssUPTSFEAv_FzaaLxlUvgcKzLLdwqGXRzOXDgf0RAzPo9qLJNB_q2ArkV9Oeh-RzpAwJSVdcljac2FnN3i2r2aYXn94RhPXsSQXG8Cqrk0w",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/api-service-two/demo/dubboDemo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api-service-two",
+						"demo",
+						"dubboDemo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

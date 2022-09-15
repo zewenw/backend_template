@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "55becaa1-8f48-4987-b5d4-70c4f8c0c39e",
+		"name": "oauth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getToken",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsiYWxsIl0sIlVTRVJfSUQiOiJhYmNkY2RjZCIsIlVTRVJfTkFNRSI6InVzZXIiLCJleHAiOjE2NTQ4MzQwMjUsImF1dGhvcml0aWVzIjpbIlJPTEVfR1VFU1QiXSwianRpIjoiNDg4ZWE5MGYtNDMwMy00ZjNkLWFjZGUtZTRmMzRkYmM2ODllIiwiY2xpZW50X2lkIjoib2F1dGgifQ.kWnh7plkNkDevWQSkL20ewfuAy2ClLwBq1T9OAnPQ7XkTNneTedP73uP9s3mVCY338gb3INlcVRhAE4D00KF9hnHumJLiid-pep366WPlVca-wCXBZWWqq3mNfZURuFzbLKx0ZM7OPEiUqTj5j1f5w3dCDyChKEu5ZBEdlOFgtL2qYlBopfHZE1kkPUc6KGVqmVGYg9uyDX1k80odPqbgFFJ_KH2xAsmAbyMR2wcmVGguZxWJeKQl9Idb8U7kvviWeg-FkYNqIC_LwweDYybQtRlghroHBfNE6zbMyoFPf-F_6FH4IHiT6i5clazsWhjsJIPWPLApzRDHkRjOM4LBw",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "all",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "oauth",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gateway-oauth-token",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "all",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "oauth",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/oauth/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"oauth",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refreshToken",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsiYWxsIl0sIlVTRVJfSUQiOiJhYmNkY2RjZCIsIlVTRVJfTkFNRSI6InVzZXIiLCJleHAiOjE2NTQ4ODM4OTEsImF1dGhvcml0aWVzIjpbIlJPTEVfR1VFU1QiXSwianRpIjoiNTRjYzIzMjctNDU0Yy00MzNlLThlODEtYzdhY2IxOWFiMDZmIiwiY2xpZW50X2lkIjoib2F1dGgifQ.HohaFlDJkat0nc25-LTIldM37bMQTC43Va2WTxxjv2WBgWVIfXzZC4-xAlr1YIr97THzI6rdBm9Byb2E9RtxSCngh2fy6Wn3VffiJpRFJmKAVu4XFIZDKNtbOhuOiSGdDeMw6o-cZ1xOoqePH9gUjHodFJzvbXWMS264wxbK9hCpiZacXcapvC6UxBm0pESucCuybVUaZf0sVK7pgUnhCRZY9BP8BJS4n0lbiQks7AINFns_xYQ4PsIn8B1-4VvHmZ9gqL4eJr_8Tbhp_f-G6dSFMDKfyxK8QJzKEi-2ZUp8r6CTOX_h26xaXzkM2Gl1Nc3OKqrVEqyNxCvt5_qWIQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsiYWxsIl0sImF0aSI6IjU0Y2MyMzI3LTQ1NGMtNDMzZS04ZTgxLWM3YWNiMTlhYjA2ZiIsIlVTRVJfSUQiOiJhYmNkY2RjZCIsIlVTRVJfTkFNRSI6InVzZXIiLCJleHAiOjE2NTc0MzI2OTEsImF1dGhvcml0aWVzIjpbIlJPTEVfR1VFU1QiXSwianRpIjoiNjk4NDI0MzQtYzYwNy00NjRiLWE3YWMtZDNlYTZkMjNlYTg4IiwiY2xpZW50X2lkIjoib2F1dGgifQ.C_tGDUOerzNa-Y3mLv-eTAWthgmJOC9U2L7p84PkObzRNAb0KwHSQHeAGz096kJFRuUjQmfxkZN_He1P6VE-7YJLXvYgBaaYQgPqt4VqNiFWdS7LWhKXHoldrMFBVheQbYYZBO1e-7U_RdWvA0oB6pow76tHoE0MZnrUlrJXZM8p1p9yIWBsSWEMkNnICV5GC5SXI6VobugF8oRhQXlCA3dBBBcxR9T9jj96T9T_zqEYfv506vtjJM_6O3Ps15pdy-Epy1R3UkRUy3WpaSGXFomaZWT8Lf0IPoFrBW-BTGyYXJxv908--KkT-LW7t9LmitIu5Q47Cah_kXWGRusbzg",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "oauth",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8002/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loginOut",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsiYWxsIl0sIlVTRVJfSUQiOiJhYmNkY2RjZCIsIlVTRVJfTkFNRSI6InVzZXIiLCJleHAiOjE2NTQ4ODM4OTEsImF1dGhvcml0aWVzIjpbIlJPTEVfR1VFU1QiXSwianRpIjoiNTRjYzIzMjctNDU0Yy00MzNlLThlODEtYzdhY2IxOWFiMDZmIiwiY2xpZW50X2lkIjoib2F1dGgifQ.HohaFlDJkat0nc25-LTIldM37bMQTC43Va2WTxxjv2WBgWVIfXzZC4-xAlr1YIr97THzI6rdBm9Byb2E9RtxSCngh2fy6Wn3VffiJpRFJmKAVu4XFIZDKNtbOhuOiSGdDeMw6o-cZ1xOoqePH9gUjHodFJzvbXWMS264wxbK9hCpiZacXcapvC6UxBm0pESucCuybVUaZf0sVK7pgUnhCRZY9BP8BJS4n0lbiQks7AINFns_xYQ4PsIn8B1-4VvHmZ9gqL4eJr_8Tbhp_f-G6dSFMDKfyxK8QJzKEi-2ZUp8r6CTOX_h26xaXzkM2Gl1Nc3OKqrVEqyNxCvt5_qWIQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsiYWxsIl0sImF0aSI6IjU0Y2MyMzI3LTQ1NGMtNDMzZS04ZTgxLWM3YWNiMTlhYjA2ZiIsIlVTRVJfSUQiOiJhYmNkY2RjZCIsIlVTRVJfTkFNRSI6InVzZXIiLCJleHAiOjE2NTc0MzI2OTEsImF1dGhvcml0aWVzIjpbIlJPTEVfR1VFU1QiXSwianRpIjoiNjk4NDI0MzQtYzYwNy00NjRiLWE3YWMtZDNlYTZkMjNlYTg4IiwiY2xpZW50X2lkIjoib2F1dGgifQ.C_tGDUOerzNa-Y3mLv-eTAWthgmJOC9U2L7p84PkObzRNAb0KwHSQHeAGz096kJFRuUjQmfxkZN_He1P6VE-7YJLXvYgBaaYQgPqt4VqNiFWdS7LWhKXHoldrMFBVheQbYYZBO1e-7U_RdWvA0oB6pow76tHoE0MZnrUlrJXZM8p1p9yIWBsSWEMkNnICV5GC5SXI6VobugF8oRhQXlCA3dBBBcxR9T9jj96T9T_zqEYfv506vtjJM_6O3Ps15pdy-Epy1R3UkRUy3WpaSGXFomaZWT8Lf0IPoFrBW-BTGyYXJxv908--KkT-LW7t9LmitIu5Q47Cah_kXWGRusbzg",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "oauth",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8002/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPublicKey",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/oauth/oauth/getPublicKey",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"oauth",
+						"oauth",
+						"getPublicKey"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
