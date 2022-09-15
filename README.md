@@ -29,5 +29,9 @@
 ### 项目使用简介
 如需新增模块,可以参考service-one/service-two  
 如采用，希望能为项目点亮一个star
+### 启动
+需要依次启动mysql->nacos->redis->zookeeper->zipkin->dubbo-admin
+
+---
 #### 欢迎有相同兴趣的开发者贡献代码
 #### [个人博客](https://www.yuque.com/wangzewen-jlbvo/ehmcng)
