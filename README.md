@@ -10,11 +10,11 @@
 - [x] oauth2.0 + jwt + springSecurtiy
 - [x] redis
 - [x] mysql
+- [x] 微服务链路追踪 sleuth+zipkin
 
 ### 后续会补充进去的其他技术
 - [ ] 性能监控埋点 prometheus
 - [ ] 分布式任务调度 考虑xxl-job
-- [ ] 微服务链路追踪 skyWalking/zipkin
 - [ ] gateWay限流熔断 目前使用的是gateway自带的RateLimiter 后期考虑sentiel
 - [ ] oauth增加其他验证方式 短信/授权码/客户端
 - [ ] MQ组件 RacketMQ/RabbitMQ/kafka
